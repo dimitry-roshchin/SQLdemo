@@ -11,7 +11,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     //references to buttons and other controls on the layout
-    Button btn_add, btn_viewAll;
+    androidx.appcompat.widget.AppCompatButton btn_add, btn_viewAll;
     EditText et_name, et_age;
     androidx.appcompat.widget.SwitchCompat sw_active;
     androidx.recyclerview.widget.RecyclerView rv_customerList;
@@ -34,7 +34,14 @@ public class MainActivity extends AppCompatActivity {
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Add Button", Toast.LENGTH_LONG).show();
+                try {
+                    CustomerModel customerModel = new CustomerModel(-1, et_name.getText().toString(), Integer.parseInt(et_age.getText().toString()), sw_active.isChecked());
+                    Toast.makeText(MainActivity.this, customerModel.toString(), Toast.LENGTH_SHORT).show();
+
+                }
+                catch (Exception e) {
+                    Toast.makeText(MainActivity.this, "Error Creating Customer", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
