@@ -50,6 +50,23 @@ public class DataBase extends SQLiteOpenHelper {
         return insert != -1;
     }
 
+    public boolean deleteOne(CustomerModel customerModel){
+        //find CustomerModel in the database. if found , delete it and return true.
+        //if it is not found return false.
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String queryString = "DELETE FROM " + CUSTOMER_TABLE + " WHERE " + COLUMN_ID + " = " + customerModel.getId();
+
+        Cursor cursor = db.rawQuery(queryString, null);
+
+        if (cursor.moveToFirst()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
         public List <CustomerModel>getEveryone() {
 
             List<CustomerModel> returnList = new ArrayList<>();

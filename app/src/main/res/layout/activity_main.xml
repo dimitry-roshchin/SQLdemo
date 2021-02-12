@@ -54,7 +54,6 @@
         android:background="#FF6D00"
         android:text="@string/view_all"
         app:layout_constraintEnd_toStartOf="@+id/btn_add"
-        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sw_active" />
 
@@ -74,29 +73,24 @@
         android:id="@+id/sw_active"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:background="#FF6D00"
         android:text="@string/active_customer"
-        app:layout_constraintBottom_toTopOf="@+id/btn_viewAll"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_age" />
 
     <ListView
         android:id="@+id/rv_customerList"
-        android:layout_width="369dp"
-        android:layout_height="448dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="382dp"
+        android:layout_height="475dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_viewAll"
-        app:layout_constraintVertical_bias="0.757" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_viewAll" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

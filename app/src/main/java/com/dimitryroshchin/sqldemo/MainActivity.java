@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
 
                 //Toast.makeText(MainActivity.this, everyone.toString(), Toast.LENGTH_LONG).show();
 
+            }
+        });
+
+        rv_customerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                CustomerModel clickedCustomer = (CustomerModel) parent.getItemAtPosition(position);
+                dataBaseHelper.deleteOne(clickedCustomer);
+                ShowCustomersOnListView();
+                Toast.makeText(MainActivity.this, "Deleted" + clickedCustomer.toString(), Toast.LENGTH_SHORT).show();
+                
             }
         });
     }
