@@ -1,12 +1,17 @@
 package com.dimitryroshchin.sqldemo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
     androidx.appcompat.widget.AppCompatButton btn_add, btn_viewAll;
     EditText et_name, et_age;
     androidx.appcompat.widget.SwitchCompat sw_active;
-    androidx.recyclerview.widget.RecyclerView rv_customerList;
+    ListView rv_customerList;
 
+    ArrayAdapter customerArrayAdapter;
+    DataBase dataBaseHelper;
 
 
     @Override
@@ -29,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         et_age = findViewById(R.id.et_age);
         sw_active = findViewById(R.id.sw_active);
         rv_customerList = findViewById(R.id.rv_customerList);
+
+        dataBaseHelper = new DataBase(MainActivity.this);
+        ShowCustomersOnListView();
 
         // button click listeners for the add and view all buttons
         btn_add.setOnClickListener(new View.OnClickListener() {
@@ -52,15 +62,27 @@ public class MainActivity extends AppCompatActivity {
                 boolean success = dataBase.addOne(customerModel);
 
                 Toast.makeText(MainActivity.this, "success=" + success, Toast.LENGTH_SHORT).show();
+                ShowCustomersOnListView();
             }
         });
 
         btn_viewAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "View All Button", Toast.LENGTH_LONG).show();
+
+                DataBase dataBase = new DataBase(MainActivity.this);
+
+                ShowCustomersOnListView();
+
+
+                //Toast.makeText(MainActivity.this, everyone.toString(), Toast.LENGTH_LONG).show();
 
             }
         });
+    }
+
+    private void ShowCustomersOnListView() {
+        customerArrayAdapter = new ArrayAdapter<CustomerModel>(MainActivity.this, android.R.layout.simple_list_item_1, dataBaseHelper.getEveryone());
+        rv_customerList.setAdapter(customerArrayAdapter);
     }
 }
